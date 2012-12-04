@@ -120,7 +120,7 @@
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="So,what brings you to my show,er,iPhone app today?" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Jkg-DG-r1K">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="VF1-tI-h5k"/>
+                                    <constraint firstAttribute="height" constant="70" type="user" id="VF1-tI-h5k"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -168,16 +168,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Jkg-DG-r1K" firstAttribute="top" secondItem="2YX-B4-be9" secondAttribute="top" type="default" id="8KJ-ZX-XiM"/>
+                            <constraint firstItem="Jkg-DG-r1K" firstAttribute="top" secondItem="2YX-B4-be9" secondAttribute="top" type="user" id="8KJ-ZX-XiM"/>
                             <constraint firstAttribute="trailing" secondItem="9Uf-dk-GWX" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="8jX-dS-cAu"/>
-                            <constraint firstItem="9Uf-dk-GWX" firstAttribute="top" secondItem="Jkg-DG-r1K" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="DCy-v6-Wl3"/>
                             <constraint firstAttribute="trailing" secondItem="cwt-zJ-yx1" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Duq-s5-ACy"/>
                             <constraint firstItem="9Uf-dk-GWX" firstAttribute="leading" secondItem="2YX-B4-be9" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Fze-cS-ahU"/>
                             <constraint firstAttribute="trailing" secondItem="WCl-WU-Xt8" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Hwd-BY-R2U"/>
                             <constraint firstItem="Jkg-DG-r1K" firstAttribute="leading" secondItem="2YX-B4-be9" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="LJc-ZN-OfR"/>
-                            <constraint firstItem="cwt-zJ-yx1" firstAttribute="top" secondItem="2YX-B4-be9" secondAttribute="top" constant="148" id="YsD-yy-DCt"/>
-                            <constraint firstAttribute="bottom" secondItem="WCl-WU-Xt8" secondAttribute="bottom" constant="158" id="ZpZ-pc-4G4"/>
+                            <constraint firstItem="9Uf-dk-GWX" firstAttribute="top" secondItem="Jkg-DG-r1K" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="UoR-2z-W7f"/>
                             <constraint firstAttribute="trailing" secondItem="Jkg-DG-r1K" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="aU8-mq-TWl"/>
+                            <constraint firstItem="WCl-WU-Xt8" firstAttribute="top" secondItem="2YX-B4-be9" secondAttribute="top" constant="198" id="biT-pt-ctz"/>
+                            <constraint firstItem="cwt-zJ-yx1" firstAttribute="top" secondItem="2YX-B4-be9" secondAttribute="top" constant="136" id="mAz-kF-F5o"/>
                             <constraint firstItem="cwt-zJ-yx1" firstAttribute="leading" secondItem="2YX-B4-be9" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="mqG-i3-RqB"/>
                             <constraint firstItem="WCl-WU-Xt8" firstAttribute="leading" secondItem="2YX-B4-be9" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="yrd-pX-52Z"/>
                         </constraints>
@@ -277,17 +277,17 @@
             </objects>
             <point key="canvasLocation" x="1079" y="-604"/>
         </scene>
-        <!--View Controller - Psychologist-->
+        <!--Rotatable View Controller - Psychologist-->
         <scene sceneID="us9-xJ-5Qv">
             <objects>
-                <viewController id="CdZ-FR-PHH" sceneMemberID="viewController">
+                <viewController id="CdZ-FR-PHH" customClass="RotatableViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Ta-Mw-YVE">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RHr-Hy-kwv">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="172" id="xyb-Ix-AEE"/>
+                                    <constraint firstAttribute="width" constant="172" type="user" id="xyb-Ix-AEE"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Dr.Pill">
@@ -317,11 +317,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="RHr-Hy-kwv" firstAttribute="leading" secondItem="zJ8-z2-XZd" secondAttribute="leading" type="default" id="LGc-XB-nAh"/>
-                            <constraint firstItem="RHr-Hy-kwv" firstAttribute="trailing" secondItem="zJ8-z2-XZd" secondAttribute="trailing" type="default" id="MjO-yF-8Eb"/>
-                            <constraint firstItem="RHr-Hy-kwv" firstAttribute="top" secondItem="8Ta-Mw-YVE" secondAttribute="top" constant="136" id="Xho-pC-yg0"/>
-                            <constraint firstItem="zJ8-z2-XZd" firstAttribute="top" secondItem="8Ta-Mw-YVE" secondAttribute="top" constant="224" id="l1i-7W-OLa"/>
-                            <constraint firstItem="RHr-Hy-kwv" firstAttribute="leading" secondItem="8Ta-Mw-YVE" secondAttribute="leading" constant="72" id="uy0-oY-sUz"/>
+                            <constraint firstItem="RHr-Hy-kwv" firstAttribute="leading" secondItem="zJ8-z2-XZd" secondAttribute="leading" type="user" id="081-hJ-K0g"/>
+                            <constraint firstItem="zJ8-z2-XZd" firstAttribute="top" secondItem="8Ta-Mw-YVE" secondAttribute="top" constant="129" id="3s1-NN-g5r"/>
+                            <constraint firstItem="zJ8-z2-XZd" firstAttribute="leading" secondItem="8Ta-Mw-YVE" secondAttribute="leading" constant="74" type="user" id="Wy6-ec-Jx4"/>
+                            <constraint firstItem="RHr-Hy-kwv" firstAttribute="top" secondItem="8Ta-Mw-YVE" secondAttribute="top" constant="62" id="XyO-Ha-HLf"/>
+                            <constraint firstItem="RHr-Hy-kwv" firstAttribute="centerX" secondItem="8Ta-Mw-YVE" secondAttribute="centerX" type="user" id="hcA-9w-naK"/>
+                            <constraint firstItem="RHr-Hy-kwv" firstAttribute="leading" secondItem="8Ta-Mw-YVE" secondAttribute="leading" constant="74" type="user" id="ilI-KR-Qcx"/>
+                            <constraint firstItem="RHr-Hy-kwv" firstAttribute="trailing" secondItem="zJ8-z2-XZd" secondAttribute="trailing" type="user" id="ocI-Jk-SjH"/>
+                            <constraint firstAttribute="trailing" secondItem="RHr-Hy-kwv" secondAttribute="trailing" constant="74" type="user" id="rY7-4d-Hgw"/>
+                            <constraint firstAttribute="trailing" secondItem="zJ8-z2-XZd" secondAttribute="trailing" constant="74" type="user" id="wca-qv-GrY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Psychologist" id="X4b-qh-heo"/>
@@ -378,6 +382,9 @@
         </class>
         <class className="PsychologistViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PsychologistViewController.h"/>
+        </class>
+        <class className="RotatableViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RotatableViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

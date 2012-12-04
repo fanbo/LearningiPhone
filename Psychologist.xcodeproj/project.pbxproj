@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50701F44166DEF54009F10D7 /* RotatableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50701F43166DEF54009F10D7 /* RotatableViewController.m */; };
+		50701F47166DF114009F10D7 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50701F46166DF114009F10D7 /* iPad.storyboard */; };
 		50B16228166CDBFE00A4E8C7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50B16227166CDBFE00A4E8C7 /* UIKit.framework */; };
 		50B1622A166CDBFE00A4E8C7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50B16229166CDBFE00A4E8C7 /* Foundation.framework */; };
 		50B1622C166CDBFE00A4E8C7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50B1622B166CDBFE00A4E8C7 /* CoreGraphics.framework */; };
@@ -16,13 +18,16 @@
 		50B1623A166CDBFE00A4E8C7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 50B16239166CDBFE00A4E8C7 /* Default.png */; };
 		50B1623C166CDBFE00A4E8C7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50B1623B166CDBFE00A4E8C7 /* Default@2x.png */; };
 		50B1623E166CDBFE00A4E8C7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50B1623D166CDBFE00A4E8C7 /* Default-568h@2x.png */; };
-		50B16241166CDBFE00A4E8C7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50B1623F166CDBFE00A4E8C7 /* MainStoryboard.storyboard */; };
+		50B16241166CDBFE00A4E8C7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50B1623F166CDBFE00A4E8C7 /* iPhone.storyboard */; };
 		50B16244166CDBFF00A4E8C7 /* PsychologistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B16243166CDBFF00A4E8C7 /* PsychologistViewController.m */; };
 		50B1624E166CEC2100A4E8C7 /* FaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1624B166CEC2100A4E8C7 /* FaceView.m */; };
 		50B1624F166CEC2100A4E8C7 /* HappinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B1624D166CEC2100A4E8C7 /* HappinessViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		50701F42166DEF54009F10D7 /* RotatableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotatableViewController.h; sourceTree = "<group>"; };
+		50701F43166DEF54009F10D7 /* RotatableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotatableViewController.m; sourceTree = "<group>"; };
+		50701F46166DF114009F10D7 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = iPad.storyboard; path = ../iPad.storyboard; sourceTree = "<group>"; };
 		50B16223166CDBFE00A4E8C7 /* Psychologist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Psychologist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50B16227166CDBFE00A4E8C7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		50B16229166CDBFE00A4E8C7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -36,7 +41,7 @@
 		50B16239166CDBFE00A4E8C7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		50B1623B166CDBFE00A4E8C7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		50B1623D166CDBFE00A4E8C7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		50B16240166CDBFE00A4E8C7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		50B16240166CDBFE00A4E8C7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/iPhone.storyboard; sourceTree = "<group>"; };
 		50B16242166CDBFF00A4E8C7 /* PsychologistViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PsychologistViewController.h; sourceTree = "<group>"; };
 		50B16243166CDBFF00A4E8C7 /* PsychologistViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PsychologistViewController.m; sourceTree = "<group>"; };
 		50B1624A166CEC2100A4E8C7 /* FaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceView.h; sourceTree = "<group>"; };
@@ -91,7 +96,10 @@
 			children = (
 				50B16236166CDBFE00A4E8C7 /* PsychologistAppDelegate.h */,
 				50B16237166CDBFE00A4E8C7 /* PsychologistAppDelegate.m */,
-				50B1623F166CDBFE00A4E8C7 /* MainStoryboard.storyboard */,
+				50B1623F166CDBFE00A4E8C7 /* iPhone.storyboard */,
+				50701F46166DF114009F10D7 /* iPad.storyboard */,
+				50701F42166DEF54009F10D7 /* RotatableViewController.h */,
+				50701F43166DEF54009F10D7 /* RotatableViewController.m */,
 				50B1624A166CEC2100A4E8C7 /* FaceView.h */,
 				50B1624B166CEC2100A4E8C7 /* FaceView.m */,
 				50B1624C166CEC2100A4E8C7 /* HappinessViewController.h */,
@@ -173,7 +181,8 @@
 				50B1623A166CDBFE00A4E8C7 /* Default.png in Resources */,
 				50B1623C166CDBFE00A4E8C7 /* Default@2x.png in Resources */,
 				50B1623E166CDBFE00A4E8C7 /* Default-568h@2x.png in Resources */,
-				50B16241166CDBFE00A4E8C7 /* MainStoryboard.storyboard in Resources */,
+				50B16241166CDBFE00A4E8C7 /* iPhone.storyboard in Resources */,
+				50701F47166DF114009F10D7 /* iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +198,7 @@
 				50B16244166CDBFF00A4E8C7 /* PsychologistViewController.m in Sources */,
 				50B1624E166CEC2100A4E8C7 /* FaceView.m in Sources */,
 				50B1624F166CEC2100A4E8C7 /* HappinessViewController.m in Sources */,
+				50701F44166DEF54009F10D7 /* RotatableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,12 +213,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		50B1623F166CDBFE00A4E8C7 /* MainStoryboard.storyboard */ = {
+		50B1623F166CDBFE00A4E8C7 /* iPhone.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				50B16240166CDBFE00A4E8C7 /* en */,
 			);
-			name = MainStoryboard.storyboard;
+			name = iPhone.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -270,7 +280,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Psychologist/Psychologist-Prefix.pch";
 				INFOPLIST_FILE = "Psychologist/Psychologist-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -281,7 +293,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Psychologist/Psychologist-Prefix.pch";
 				INFOPLIST_FILE = "Psychologist/Psychologist-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -305,6 +319,7 @@
 				50B16249166CDBFF00A4E8C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
