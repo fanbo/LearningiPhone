@@ -45,4 +45,19 @@
     }
     return NO;//对于返回值YES或者NO反应都一样，但是文档内说是YES用于处理文本框自定义行为，NO是不执行
 }
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    //当在文本框内编辑时，标签栏同时显示输入的内容
+    if (textField==self.TestField){
+        self.label.text=[self.label.text stringByAppendingString:string];
+    }
+return YES;
+}
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    //当开始编辑文本框时，清空文本框和标签栏的原始信息
+    if(textField==self.TestField){
+        textField.text=@"";
+        self.label.text=@"";
+    }
+    return YES;
+}
 @end
