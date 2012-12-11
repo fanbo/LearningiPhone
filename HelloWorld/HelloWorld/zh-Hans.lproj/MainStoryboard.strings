@@ -1,0 +1,9 @@
+
+/* Class = "IBUITextField"; accessibilityHint = "Type your name"; ObjectID = "0nF-wN-fUg"; */
+"0nF-wN-fUg.accessibilityHint" = "输入你的名字";
+
+/* Class = "IBUITextField"; placeholder = "Your Name"; ObjectID = "0nF-wN-fUg"; */
+"0nF-wN-fUg.placeholder" = "你的名字";
+
+/* Class = "IBUIButton"; normalTitle = "Hello"; ObjectID = "XWf-af-WYk"; */
+"XWf-af-WYk.normalTitle" = "你好";

@@ -42,7 +42,7 @@
     if (textField==self.TestField){
         [textField resignFirstResponder];
     }
-    return YES;//对于返回值YES或者NO反应都一样，但是文档内说是YES用于处理文本框自定义行为，NO是不执行
+    return NO;//对于返回值YES或者NO反应都一样，但是文档内说是YES用于处理文本框自定义行为，NO是不执行
 }
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     //当在文本框内编辑时，标签栏同时显示输入的内容
@@ -51,21 +51,21 @@
     }
 return YES;//返回YES表示正常的输入状态，返回NO文本框不会显示输入的文字
 }
--(void)textFieldDidBeginEditing:(UITextField *)textField{
-    //当开始编辑文本框时，清空文本框和标签栏的原始信息
-    if(textField==self.TestField){
-        textField.text=@"";
-        self.label.text=@"";
-    }
-}
-//-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+//-(void)textFieldDidBeginEditing:(UITextField *)textField{
 //    //当开始编辑文本框时，清空文本框和标签栏的原始信息
 //    if(textField==self.TestField){
 //        textField.text=@"";
 //        self.label.text=@"";
 //    }
-//    return YES;//返回YES可以进入编辑状态，返回NO无法进入编辑状态
 //}
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    //当开始编辑文本框时，清空文本框和标签栏的原始信息
+    if(textField==self.TestField){
+        textField.text=@"";
+        self.label.text=@"";
+    }
+    return YES;//返回YES可以进入编辑状态，返回NO无法进入编辑状态
+}
 //-(void)textFieldDidEndEditing:(UITextField *)textField{
 //    if (textField==self.TestField) {
 //        self.label.text=@"END";
@@ -73,9 +73,12 @@ return YES;//返回YES表示正常的输入状态，返回NO文本框不会显�
 //}
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
     if (textField==self.TestField) {
-        self.label.text=@"END";
+        if ([textField.text isEqualToString:@"SNAKE"]){
+            self.label.text=@"END";
+            return YES;
+        }
     }
-    return YES;//当返回YES的时候正常状态，返回NO是不会结束编辑状态，也就不会激活textFieldShouldReturn事件
+    return NO;//当返回YES的时候正常状态，返回NO是不会结束编辑状态，也就不会激活textFieldShouldReturn事件
 }
 -(BOOL)textFieldShouldClear:(UITextField *)textField{
     //还未实现
