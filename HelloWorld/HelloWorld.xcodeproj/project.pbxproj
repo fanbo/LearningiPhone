@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5015243D1677817000BE1C4A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5015243F1677817000BE1C4A /* Localizable.strings */; };
 		502FBB121670EB490083EF62 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 502FBB111670EB490083EF62 /* UIKit.framework */; };
 		502FBB141670EB490083EF62 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 502FBB131670EB490083EF62 /* Foundation.framework */; };
 		502FBB161670EB490083EF62 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 502FBB151670EB490083EF62 /* CoreGraphics.framework */; };
@@ -21,12 +22,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5015243E1677817000BE1C4A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		50152440167781A700BE1C4A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		502FBB0D1670EB490083EF62 /* HelloWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		502FBB111670EB490083EF62 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		502FBB131670EB490083EF62 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		502FBB151670EB490083EF62 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		502FBB191670EB490083EF62 /* HelloWorld-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HelloWorld-Info.plist"; sourceTree = "<group>"; };
-		502FBB1B1670EB490083EF62 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		502FBB1D1670EB490083EF62 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		502FBB1F1670EB490083EF62 /* HelloWorld-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HelloWorld-Prefix.pch"; sourceTree = "<group>"; };
 		502FBB201670EB490083EF62 /* HelloWorldAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldAppDelegate.h; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				502FBB291670EB490083EF62 /* MainStoryboard.storyboard */,
 				502FBB2C1670EB490083EF62 /* HelloWorldViewController.h */,
 				502FBB2D1670EB490083EF62 /* HelloWorldViewController.m */,
+				5015243F1677817000BE1C4A /* Localizable.strings */,
 				502FBB181670EB490083EF62 /* Supporting Files */,
 			);
 			path = HelloWorld;
@@ -168,6 +171,7 @@
 				502FBB261670EB490083EF62 /* Default@2x.png in Resources */,
 				502FBB281670EB490083EF62 /* Default-568h@2x.png in Resources */,
 				502FBB2B1670EB490083EF62 /* MainStoryboard.storyboard in Resources */,
+				5015243D1677817000BE1C4A /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,10 +191,18 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		5015243F1677817000BE1C4A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5015243E1677817000BE1C4A /* en */,
+				50152440167781A700BE1C4A /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		502FBB1A1670EB490083EF62 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				502FBB1B1670EB490083EF62 /* en */,
 				50919B9B1677283E00FC7E5D /* zh-Hans */,
 			);
 			name = InfoPlist.strings;

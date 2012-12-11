@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  HelloWorld
+
+  Created by Snake on 12-12-11.
+  Copyright (c) 2012年 wellsnake. All rights reserved.
+*/
+"HELLO" = "你好, %@";
+"END" = "结束";
+"WORLD" = "世界";

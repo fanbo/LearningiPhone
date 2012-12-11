@@ -7,3 +7,6 @@
 
 /* Class = "IBUIButton"; normalTitle = "Hello"; ObjectID = "XWf-af-WYk"; */
 "XWf-af-WYk.normalTitle" = "你好";
+
+/* Class = "IBUILabel"; text = "A Very Long Name"; ObjectID = "LdP-X7-eIs"; */
+"LdP-X7-eIs.text" = "输入一个很长的名字";

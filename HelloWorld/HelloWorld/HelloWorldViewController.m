@@ -16,13 +16,12 @@
 @end
 
 @implementation HelloWorldViewController
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    self.TestField.delegate=self;
 }
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -33,9 +32,9 @@
     self.userName=self.TestField.text;
     NSString *nameString=self.userName;
     if ([nameString length]==0){
-        nameString=@"World";
+        nameString=[[NSString alloc] initWithFormat:NSLocalizedString(@"WORLD", @"The string display")];
     }
-    NSString *greeting =[[NSString alloc] initWithFormat:@"Hello,%@!",nameString];
+    NSString *greeting =[[NSString alloc] initWithFormat:NSLocalizedString(@"HELLO", @"The string display"),nameString];
     self.label.text=greeting;
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -74,7 +73,7 @@ return YES;//返回YES表示正常的输入状态，返回NO文本框不会显�
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
     if (textField==self.TestField) {
         if ([textField.text isEqualToString:@"SNAKE"]){
-            self.label.text=@"END";
+            self.label.text=[[NSString alloc] initWithFormat:NSLocalizedString(@"END", @"The string display")];
             return YES;
         }
     }
