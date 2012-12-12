@@ -15,18 +15,25 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JQh-nE-aYs" customClass="FaceView">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cnX-jx-Fdd">
+                                <items/>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="cnX-jx-Fdd" firstAttribute="leading" secondItem="BUt-OF-nIg" secondAttribute="leading" type="default" id="10h-TU-5rQ"/>
+                            <constraint firstItem="JQh-nE-aYs" firstAttribute="top" secondItem="cnX-jx-Fdd" secondAttribute="bottom" type="default" id="Lg0-zZ-NyP"/>
                             <constraint firstItem="JQh-nE-aYs" firstAttribute="trailing" secondItem="BUt-OF-nIg" secondAttribute="trailing" type="default" id="Ofg-UP-dbu"/>
+                            <constraint firstItem="cnX-jx-Fdd" firstAttribute="trailing" secondItem="BUt-OF-nIg" secondAttribute="trailing" type="default" id="Sd8-VE-ate"/>
                             <constraint firstItem="JQh-nE-aYs" firstAttribute="bottom" secondItem="BUt-OF-nIg" secondAttribute="bottom" type="default" id="gVn-HX-LBm"/>
-                            <constraint firstItem="JQh-nE-aYs" firstAttribute="top" secondItem="BUt-OF-nIg" secondAttribute="top" type="default" id="nrF-rU-9Op"/>
+                            <constraint firstItem="cnX-jx-Fdd" firstAttribute="top" secondItem="BUt-OF-nIg" secondAttribute="top" type="default" id="nd0-NI-AKq"/>
                             <constraint firstItem="JQh-nE-aYs" firstAttribute="leading" secondItem="BUt-OF-nIg" secondAttribute="leading" type="default" id="sPf-P6-l7Z"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <connections>
                         <outlet property="faceView" destination="JQh-nE-aYs" id="4WC-if-X6i"/>
+                        <outlet property="toolbar" destination="cnX-jx-Fdd" id="68q-oF-qtl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ieA-NA-DtN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -65,7 +72,7 @@
         <!--Rotatable View Controller - Psychologist-->
         <scene sceneID="haB-8B-eru">
             <objects>
-                <viewController id="3Ah-YH-hzu" customClass="RotatableViewController" sceneMemberID="viewController">
+                <viewController title="Psychologist" id="3Ah-YH-hzu" customClass="RotatableViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="esg-Rc-U1o">
                         <rect key="frame" x="0.0" y="64" width="320" height="788"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -271,6 +278,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HappinessViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="faceView" candidateClass="FaceView"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
             </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "splitViewbarButtonItemPresenter.h"
 
-@interface HappinessViewController : UIViewController
+@interface HappinessViewController : UIViewController<splitViewbarButtonItemPresenter>
 @property (nonatomic) int happiness; //0 is sad;100 is very happy
 @end

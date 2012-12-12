@@ -48,6 +48,7 @@
 		50B1624B166CEC2100A4E8C7 /* FaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceView.m; sourceTree = "<group>"; };
 		50B1624C166CEC2100A4E8C7 /* HappinessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HappinessViewController.h; sourceTree = "<group>"; };
 		50B1624D166CEC2100A4E8C7 /* HappinessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HappinessViewController.m; sourceTree = "<group>"; };
+		50C388DE16787B1E00FE0FC5 /* splitViewbarButtonItemPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = splitViewbarButtonItemPresenter.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +101,7 @@
 				50701F46166DF114009F10D7 /* iPad.storyboard */,
 				50701F42166DEF54009F10D7 /* RotatableViewController.h */,
 				50701F43166DEF54009F10D7 /* RotatableViewController.m */,
+				50C388DE16787B1E00FE0FC5 /* splitViewbarButtonItemPresenter.h */,
 				50B1624A166CEC2100A4E8C7 /* FaceView.h */,
 				50B1624B166CEC2100A4E8C7 /* FaceView.m */,
 				50B1624C166CEC2100A4E8C7 /* HappinessViewController.h */,
