@@ -15,6 +15,14 @@
 @implementation PsychologistViewController
 @synthesize diagnosis=_diagnosis;
 
+- (id <splitViewbarButtonItemPresenter>)splitViewBarButtonItemPresenter{
+    id detailVC = [self.splitViewController.viewControllers lastObject];//获得splitviewcontroller的右边的viewcontroller在这里就是happinessviewcontroller
+    if (![detailVC conformsToProtocol:@protocol(splitViewbarButtonItemPresenter) ]){//如果当前的的viewController不能响应该协议
+        detailVC=nil;
+    }
+    return detailVC;
+}
+
 -(HappinessViewController *)splitViewHappineseViewController
 {
     id hvc=[self.splitViewController.viewControllers lastObject];
@@ -23,6 +31,15 @@
     }
     return hvc;
 }
+- (void)transferSplitViewBarButtonItemToViewController:(id)destinationViewController
+{
+    UIBarButtonItem *splitViewBarButtonItem = [[self splitViewBarButtonItemPresenter] splitViewBarButtonItem];
+    [[self splitViewBarButtonItemPresenter] setSplitViewBarButtonItem:nil];
+    if (splitViewBarButtonItem) {
+        [destinationViewController setSplitViewBarButtonItem:splitViewBarButtonItem];
+    }
+}
+
 -(void)setAndShowDiagnosis:(int)diagnosis
 {
     self.diagnosis=diagnosis;
@@ -37,10 +54,13 @@
     if ([segue.identifier isEqualToString:@"ShowDiagnosis"]){
         [segue.destinationViewController setHappiness:self.diagnosis];
     }else if ([segue.identifier isEqualToString:@"Celebrity"]){
+        [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
         [segue.destinationViewController setHappiness:100];
     }else if ([segue.identifier isEqualToString:@"Serious"]){
+        [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
         [segue.destinationViewController setHappiness:20];
-    }else if ([segue.identifier isEqualToString:@"TV kook"]){
+    }else if ([segue.identifier isEqualToString:@"TV Kook"]){
+        [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
         [segue.destinationViewController setHappiness:50];
     }
 }

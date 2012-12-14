@@ -19,14 +19,22 @@
 @synthesize splitViewBarButtonItem=_splitViewBarButtonItem;
 @synthesize toolbar=_toolbar;
 
+- (void)viewDidLoad{
+    [super viewDidLoad];
+    [self handleSplitViewBarButtonItem:self.splitViewBarButtonItem];
+}
+
 - (void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem{
-    if (_splitViewBarButtonItem!=splitViewBarButtonItem){
-        NSMutableArray *toolbarItems=[self.toolbar.items mutableCopy];
-        if (_splitViewBarButtonItem) [toolbarItems removeObject:_splitViewBarButtonItem];
-        if (splitViewBarButtonItem) [toolbarItems insertObject:splitViewBarButtonItem atIndex:0];
-        self.toolbar.items=toolbarItems;
-        _splitViewBarButtonItem=splitViewBarButtonItem;
+    if (splitViewBarButtonItem!=_splitViewBarButtonItem){
+        [self handleSplitViewBarButtonItem:splitViewBarButtonItem];
     }
+}
+- (void)handleSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem{
+    NSMutableArray *toolbarItems=[self.toolbar.items mutableCopy];//获得当前toolbar的按钮数组，将不可变数组放入可变数组内，便于以后编辑数组
+    if (_splitViewBarButtonItem) [toolbarItems removeObject:_splitViewBarButtonItem];//如果原来的按钮不为空那么将原来的按钮删除
+    if (splitViewBarButtonItem) [toolbarItems insertObject:splitViewBarButtonItem atIndex:0];//如果传入的按钮不为空，那么将按钮加入到可变数组内
+    self.toolbar.items=toolbarItems;//将编辑好的可变数组给当前toolbar的按钮数组
+    _splitViewBarButtonItem=splitViewBarButtonItem;
 }
 
 -(float)smileForFaceView:(FaceView *)sender{

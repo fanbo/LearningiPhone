@@ -13,20 +13,20 @@
 @end
 
 @implementation RotatableViewController
-//-(void)awakeFromNib
-//{
-//    [super awakeFromNib];
-//    self.splitViewController.delegate=self;
-//}
-- (void)viewDidLoad
+-(void)awakeFromNib
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    [super awakeFromNib];
     self.splitViewController.delegate=self;
 }
+//- (void)viewDidLoad//放在viewdidiload里无法设置代理？
+//{
+//    [super viewDidLoad];
+//	// Do any additional setup after loading the view, typically from a nib.
+//    self.splitViewController.delegate=self;
+//}
 
 - (id <splitViewbarButtonItemPresenter>)splitViewBarButtonItemPresenter{
-    id detailVC = [self.splitViewController.viewControllers lastObject];
+    id detailVC = [self.splitViewController.viewControllers lastObject];//获得splitviewcontroller的右边的viewcontroller在这里就是happinessviewcontroller
     if (![detailVC conformsToProtocol:@protocol(splitViewbarButtonItemPresenter) ]){//如果当前的的viewController不能响应该协议
         detailVC=nil;
     }

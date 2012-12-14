@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5017FD05167B16CA00B8BE45 /* DrPillWebsiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5017FD04167B16CA00B8BE45 /* DrPillWebsiteViewController.m */; };
 		50701F44166DEF54009F10D7 /* RotatableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50701F43166DEF54009F10D7 /* RotatableViewController.m */; };
 		50701F47166DF114009F10D7 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50701F46166DF114009F10D7 /* iPad.storyboard */; };
 		50B16228166CDBFE00A4E8C7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50B16227166CDBFE00A4E8C7 /* UIKit.framework */; };
@@ -25,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5017FD03167B16CA00B8BE45 /* DrPillWebsiteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrPillWebsiteViewController.h; sourceTree = "<group>"; };
+		5017FD04167B16CA00B8BE45 /* DrPillWebsiteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrPillWebsiteViewController.m; sourceTree = "<group>"; };
 		50701F42166DEF54009F10D7 /* RotatableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotatableViewController.h; sourceTree = "<group>"; };
 		50701F43166DEF54009F10D7 /* RotatableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotatableViewController.m; sourceTree = "<group>"; };
 		50701F46166DF114009F10D7 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = iPad.storyboard; path = ../iPad.storyboard; sourceTree = "<group>"; };
@@ -108,6 +111,8 @@
 				50B1624D166CEC2100A4E8C7 /* HappinessViewController.m */,
 				50B16242166CDBFF00A4E8C7 /* PsychologistViewController.h */,
 				50B16243166CDBFF00A4E8C7 /* PsychologistViewController.m */,
+				5017FD03167B16CA00B8BE45 /* DrPillWebsiteViewController.h */,
+				5017FD04167B16CA00B8BE45 /* DrPillWebsiteViewController.m */,
 				50B1622E166CDBFE00A4E8C7 /* Supporting Files */,
 			);
 			path = Psychologist;
@@ -201,6 +206,7 @@
 				50B1624E166CEC2100A4E8C7 /* FaceView.m in Sources */,
 				50B1624F166CEC2100A4E8C7 /* HappinessViewController.m in Sources */,
 				50701F44166DEF54009F10D7 /* RotatableViewController.m in Sources */,
+				5017FD05167B16CA00B8BE45 /* DrPillWebsiteViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
