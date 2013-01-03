@@ -2,104 +2,94 @@
 //  CalculatorViewController.m
 //  Calculator
 //
-//  Created by Snake on 12-9-23.
-//  Copyright (c) 2012年 snake well. All rights reserved.
+//  Created by Snake on 12-12-18.
+//  Copyright (c) 2012年 wellsnake. All rights reserved.
 //
 
 #import "CalculatorViewController.h"
 #import "CalculatorBrain.h"
+
 @interface CalculatorViewController ()
-@property (nonatomic) BOOL userIsTheMiddleOfEnteringANumber;
-@property (nonatomic) BOOL dotIsEnter;
-@property (nonatomic,strong)CalculatorBrain *brain;
+@property (weak, nonatomic) IBOutlet UILabel *resultLabel;
+@property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
+@property (nonatomic,strong) CalculatorBrain *caclBrain;
+@property (weak, nonatomic) IBOutlet UILabel *historyLabel;
 @end
+
 @implementation CalculatorViewController
-
-@synthesize display=_display;
-@synthesize brain=_brain;
-@synthesize userIsTheMiddleOfEnteringANumber=_userIsTheMiddleOfEnteringANumber;
-@synthesize dotIsEnter=_dotIsEnter;
-@synthesize historyDisplay=_historyDisplay;
-
-
--(CalculatorBrain *)brain{
-    if (!_brain) {
-        _brain=[[CalculatorBrain alloc] init];
-    }
-    return _brain;
+- (CalculatorBrain *)caclBrain{
+    if (!_caclBrain) _caclBrain=[[CalculatorBrain alloc] init];
+    return _caclBrain;
+}
+- (IBAction)clearPress {
+    self.userIsInTheMiddleOfEnteringANumber = NO;
+    self.historyLabel.text=@"";
+    self.resultLabel.text=@"0";
+    [self.caclBrain clearStack];
 }
 
 - (IBAction)digiPressed:(UIButton *)sender {
-    NSString *digi=sender.currentTitle;
-    if (self.userIsTheMiddleOfEnteringANumber) {
-        self.display.text=[self.display.text stringByAppendingString:digi];
-    }else{
-        self.display.text=digi;
-        self.userIsTheMiddleOfEnteringANumber=YES;
+    NSString *digi = sender.currentTitle;
+    if (self.userIsInTheMiddleOfEnteringANumber){
+        self.resultLabel.text=[self.resultLabel.text stringByAppendingString:digi];
+    } else{
+        self.resultLabel.text = digi;
+        self.userIsInTheMiddleOfEnteringANumber = YES;
     }
 }
-
-- (IBAction)dotPressed:(UIButton *)sender {
-    if(!self.dotIsEnter){
-        if (self.userIsTheMiddleOfEnteringANumber){
-            self.display.text=[self.display.text stringByAppendingString:sender.currentTitle];
-        }else{
-            self.display.text=[@"0" stringByAppendingString:sender.currentTitle];
-            self.userIsTheMiddleOfEnteringANumber=YES;
-        }
-        self.dotIsEnter=YES;
-    }
-}
-
 - (IBAction)operationPressed:(UIButton *)sender {
-    if(self.userIsTheMiddleOfEnteringANumber){
-        [self enterPressed];
-    }
-    NSString *operation=sender.currentTitle;
-    double result=[self.brain performOperation:operation];
-    self.display.text=[NSString stringWithFormat:@"%g",result];
-    self.historyDisplay.text=[self.historyDisplay.text stringByAppendingString:@" "];
-    self.historyDisplay.text=[self.historyDisplay.text stringByAppendingString:operation];
-    self.historyDisplay.text=[self.historyDisplay.text stringByAppendingString:@" ="];
+    if (self.userIsInTheMiddleOfEnteringANumber) [self enterPress];
+    double result=[self.caclBrain preformOperation:sender.currentTitle];
+    self.resultLabel.text=[NSString stringWithFormat:@"%g",result];
+    [self addHistoryLabel:sender.currentTitle isOperationPress:YES];
+}
+- (IBAction)enterPress {
+    [self.caclBrain pushOperand:[self.resultLabel.text doubleValue]];
+    self.userIsInTheMiddleOfEnteringANumber = NO;
+    [self addHistoryLabel:self.resultLabel.text isOperationPress:NO];
 }
 
-- (IBAction)backspacePressed:(id)sender {
-    if(self.userIsTheMiddleOfEnteringANumber){
-        if([self.display.text length]<=1){
-            self.display.text=@"0";
-            self.userIsTheMiddleOfEnteringANumber=NO;
-        }else{
-            self.display.text=[self.display.text substringToIndex:[self.display.text length] - 1];
+- (IBAction)pointPress:(UIButton *)sender {
+    NSRange pointRange = [self.resultLabel.text rangeOfString:sender.currentTitle];
+    if (pointRange.location == NSNotFound){
+        if (self.userIsInTheMiddleOfEnteringANumber) {
+            self.resultLabel.text = [self.resultLabel.text stringByAppendingString:sender.currentTitle];
+        } else {
+            self.resultLabel.text = [@"0" stringByAppendingString:sender.currentTitle];
+            self.userIsInTheMiddleOfEnteringANumber = YES;
         }
     }
 }
-- (IBAction)plusminusPressed:(id)sender {
-    if(self.userIsTheMiddleOfEnteringANumber){
-        double number;
-        number= - [self.display.text doubleValue];
-        self.display.text=[NSString stringWithFormat:@"%g",number];
+- (void)addHistoryLabel:(NSString *)histroy isOperationPress:(BOOL)isOperationPress{
+    self.historyLabel.text=[self.historyLabel.text stringByAppendingString:[histroy stringByAppendingString:@"  "]];
+    NSRange range =[self.historyLabel.text rangeOfString:@"="];
+    if (range.location == NSNotFound){
+        if (isOperationPress) self.historyLabel.text=[self.historyLabel.text stringByAppendingString:@"="];
+    } else{
+        if (!isOperationPress){
+            self.historyLabel.text=[self.historyLabel.text stringByReplacingCharactersInRange:range withString:@""];
+        }else{
+            self.historyLabel.text=[[self.historyLabel.text stringByReplacingCharactersInRange:range withString:@""] stringByAppendingString:@"="];
+        }
     }
 }
-- (IBAction)setTestValue:(UIButton *)sender {
-    NSDictionary *valueDictionary=[[NSDictionary alloc] init];
-    if ([sender.currentTitle isEqualToString:@"test1"]){
-        [valueDictionary setValue:[NSNumber numberWithDouble:3] forKey:@"x"];
-        [valueDictionary setValue:[NSNumber numberWithDouble:4] forKey:@"a"];
-        [valueDictionary setValue:[NSNumber numberWithDouble:5] forKey:@"b"];
-        
+- (IBAction)signPress {
+    if (self.userIsInTheMiddleOfEnteringANumber) {
+        self.resultLabel.text = [NSString stringWithFormat:@"%g",0 - [self.resultLabel.text doubleValue]];
+    } else{
+        double result=[self.caclBrain preformOperation:@"+/-"];
+        self.resultLabel.text=[NSString stringWithFormat:@"%g",result];
+        [self addHistoryLabel:@"+/-" isOperationPress:YES];
     }
 }
-
-- (IBAction)enterPressed {
-    [self.brain pushOperand:[self.display.text doubleValue]];
-    self.userIsTheMiddleOfEnteringANumber=NO;
-    self.dotIsEnter=NO;
-    self.historyDisplay.text=[self.historyDisplay.text stringByAppendingString:@" "];
-    self.historyDisplay.text=[self.historyDisplay.text stringByAppendingString:self.display.text];
-}
-- (IBAction)clearPressed:(UIButton *)sender {
-    self.historyDisplay.text=@"";
-    self.display.text=@"0";
-    [self.brain clearOperation];
+- (IBAction)backPress {
+    if (self.userIsInTheMiddleOfEnteringANumber){
+        if (self.resultLabel.text.length<=1) {
+            self.resultLabel.text = @"0";
+            self.userIsInTheMiddleOfEnteringANumber = NO;
+        } else{
+            self.resultLabel.text = [self.resultLabel.text substringToIndex:self.resultLabel.text.length - 1];
+        }
+    }
 }
 @end
