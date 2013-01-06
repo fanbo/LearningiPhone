@@ -15,6 +15,7 @@
 @property (nonatomic,strong) CalculatorBrain *caclBrain;
 @property (weak, nonatomic) IBOutlet UILabel *historyLabel;
 @property (nonatomic,strong) NSDictionary *testVariableValues;
+@property (weak, nonatomic) IBOutlet UILabel *variableLabel;
 @end
 
 @implementation CalculatorViewController
@@ -62,6 +63,12 @@
     double result = [CalculatorBrain runProgram:self.caclBrain.program usingVariableValues:self.testVariableValues];
     self.resultLabel.text=[NSString stringWithFormat:@"%g",result];
     [self addHistoryLabel:sender.currentTitle isOperationPress:YES];
+    NSSet *valiableSet;
+    self.variableLabel.text = @"";
+    valiableSet=[CalculatorBrain variablesUsedInProgram:self.caclBrain.program];
+    for(NSString *valiable in valiableSet){
+        self.variableLabel.text = [[self.variableLabel.text stringByAppendingString:valiable] stringByAppendingString:@" = "];
+    }
 }
 - (IBAction)enterPress {
     [self.caclBrain pushOperand:[self.resultLabel.text doubleValue]];

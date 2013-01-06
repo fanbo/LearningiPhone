@@ -444,33 +444,27 @@
                                     <action selector="testVariablePress:" destination="2" eventType="touchUpInside" id="5gp-iR-P2F"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2iS-UO-fhU">
+                                <rect key="frame" x="20" y="429" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="historyLabel" destination="k5s-Dp-gnv" id="fBZ-oc-Vco"/>
                         <outlet property="resultLabel" destination="Qjf-3j-UMY" id="hXN-6G-1tV"/>
+                        <outlet property="variableLabel" destination="2iS-UO-fhU" id="QXe-SS-YPq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-723" y="42"/>
+            <point key="canvasLocation" x="-1298" y="20"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="CalculatorViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CalculatorViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="digiPressed:" candidateClass="UIButton"/>
-                <relationship kind="action" name="operationPressed:" candidateClass="UIButton"/>
-                <relationship kind="action" name="pointPress:" candidateClass="UIButton"/>
-                <relationship kind="action" name="testVariablePress:" candidateClass="UIButton"/>
-                <relationship kind="action" name="variablePress:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="historyLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="resultLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

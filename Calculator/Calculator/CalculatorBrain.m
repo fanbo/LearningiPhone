@@ -72,17 +72,13 @@
 
 + (double)runProgram:(id)program usingVariableValues:(NSDictionary *)variableValues{
     NSMutableArray *stack;
-    NSString *key;
-    id tmpValue;
     id value;
     if ([program isKindOfClass:[NSArray class]]){
         stack = [program mutableCopy];
     }
     for (NSUInteger keyIndex=0; keyIndex<stack.count; keyIndex++) {
-        tmpValue = [stack objectAtIndex:keyIndex];
-        if ([tmpValue isKindOfClass:[NSString class]]){
-            key=tmpValue;
-            value = [variableValues valueForKey:key];
+        if ([[stack objectAtIndex:keyIndex] isKindOfClass:[NSString class]]){
+            value = [variableValues valueForKey:[stack objectAtIndex:keyIndex]];
             if (value) {
                 [stack replaceObjectAtIndex:keyIndex withObject:value];
             }
@@ -92,8 +88,22 @@
 }
 
 + (NSSet *)variablesUsedInProgram:(id)program{
-    NSSet *variableSet;
-    return variableSet;
+    NSArray *variables;
+    NSMutableSet *variableSet = [[NSMutableSet alloc] init];
+    if ([program isKindOfClass:[NSArray class]]){
+        variables=[program copy];
+    }
+    for (id object in variables){
+        if ([object isKindOfClass:[NSString class]]){
+            if (![object isEqualToString:@"+"]&&![object isEqualToString:@"-"]&&![object isEqualToString:@"*"]&&
+                ![object isEqualToString:@"/"]&&![object isEqualToString:@"sin"]&&![object isEqualToString:@"cos"]&&
+                ![object isEqualToString:@"sqrt"]&&![object isEqualToString:@"log"]&&![object isEqualToString:@"pai"]&&
+                ![object isEqualToString:@"+/-"]){
+                [variableSet addObject:(NSString *)object];
+            }
+        }
+    }
+    return [variableSet copy];
 }
 - (void)clearStack{
     if (self.programStack) [self.programStack removeAllObjects];
