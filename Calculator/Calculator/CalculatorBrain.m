@@ -9,6 +9,7 @@
 #import "CalculatorBrain.h"
 @interface CalculatorBrain()
 @property (nonatomic,strong)NSMutableArray *programStack;
+@property (nonatomic,strong)NSDictionary *variableValues;
 @end
 
 @implementation CalculatorBrain
@@ -17,20 +18,29 @@
     if (!_programStack) _programStack=[[NSMutableArray alloc] init];
     return _programStack;
 }
+- (NSDictionary *)variableValues{
+    if (!_variableValues) _variableValues = [[NSDictionary alloc] init];
+    return _variableValues;
+}
 - (void)pushOperand:(double)operand{
     [self.programStack addObject:[NSNumber numberWithDouble:operand]];
 }
-- (void)pushVirable:(NSString *)variable{
-    [self.programStack addObject:variable];
+- (void)pushVariableValues:(NSDictionary *)variableValues{
+    self.variableValues = variableValues;
 }
-- (void)preformOperation:(NSString *)operation{
+- (double)preformOperation:(NSString *)operation{
     [self.programStack addObject:operation];
+    if ([CalculatorBrain variablesUsedInProgram:self.program]){
+        return [CalculatorBrain runProgram:self.program usingVariableValues:self.variableValues];
+    }
+    return [CalculatorBrain runProgram:self.program];
 }
+- (void)pushVariable:(NSString *)variableName{
+    [self.programStack addObject:variableName];
+}
+
 - (id)program{
     return [self.programStack copy];
-}
-+ (NSString *)descriptionOfProgram:(id)program{
-    return @"Implement this in Assigment 2";
 }
 + (double)popOperandOffStack:(NSMutableArray *)stack{
     double result = 0;
@@ -66,44 +76,55 @@
     }
     return result;
 }
-+ (double)runProgram:(id)program{
-    return [self popOperandOffStack:program];
++ (NSString *)descriptionOfProgram:(id)program{
+    return @"";
 }
-
-+ (double)runProgram:(id)program usingVariableValues:(NSDictionary *)variableValues{
++ (double)runProgram:(id)program{
     NSMutableArray *stack;
-    id value;
     if ([program isKindOfClass:[NSArray class]]){
         stack = [program mutableCopy];
     }
-    for (NSUInteger keyIndex=0; keyIndex<stack.count; keyIndex++) {
-        if ([[stack objectAtIndex:keyIndex] isKindOfClass:[NSString class]]){
-            value = [variableValues valueForKey:[stack objectAtIndex:keyIndex]];
-            if (value) {
-                [stack replaceObjectAtIndex:keyIndex withObject:value];
-            }
-        }
-    }
-    return [self runProgram:stack];
+    return [self popOperandOffStack:stack];
 }
-
-+ (NSSet *)variablesUsedInProgram:(id)program{
-    NSArray *variables;
-    NSMutableSet *variableSet = [[NSMutableSet alloc] init];
+//支持变量的计算器，将变量明替换成数值
++ (double)runProgram:(id)program usingVariableValues:(NSDictionary *)variableValues{
+    NSMutableArray *stack;
     if ([program isKindOfClass:[NSArray class]]){
-        variables=[program copy];
+        stack = [program mutableCopy];
     }
-    for (id object in variables){
-        if ([object isKindOfClass:[NSString class]]){
-            if (![object isEqualToString:@"+"]&&![object isEqualToString:@"-"]&&![object isEqualToString:@"*"]&&
-                ![object isEqualToString:@"/"]&&![object isEqualToString:@"sin"]&&![object isEqualToString:@"cos"]&&
-                ![object isEqualToString:@"sqrt"]&&![object isEqualToString:@"log"]&&![object isEqualToString:@"pai"]&&
-                ![object isEqualToString:@"+/-"]){
-                [variableSet addObject:(NSString *)object];
+    for (int index = 0; index < stack.count; index++) {
+        id variableName = [stack objectAtIndex:index];
+        if ([variableName isKindOfClass:[NSString class]]&&
+            ([variableName isEqualToString:@"a"]||
+             [variableName isEqualToString:@"b"]||
+             [variableName isEqualToString:@"x"])){
+                if ([variableValues objectForKey:variableName]){
+                    [stack replaceObjectAtIndex:index withObject:[variableValues objectForKey:variableName]];
+                } else{
+                    [stack replaceObjectAtIndex:index withObject:[NSNumber numberWithDouble:0]];
+                }
             }
-        }
     }
-    return [variableSet copy];
+    return [self popOperandOffStack:stack];
+}
+//返回当前计算器所使用的变量名称
++ (NSSet *)variablesUsedInProgram:(id)program{
+    NSMutableSet *variable = [[NSMutableSet alloc] initWithCapacity:3];
+    NSArray *stack;
+    if ([program isKindOfClass:[NSArray class]]){
+        stack = [program copy];
+    }
+    if ([stack containsObject:@"a"]){
+        [variable addObject:@"a"];
+    } else if ([stack containsObject:@"b"]){
+        [variable addObject:@"b"];
+    }else if ([stack containsObject:@"x"]){
+        [variable addObject:@"x"];
+    }
+    if (variable.count == 0){
+        return nil;
+    }
+    return [variable copy];
 }
 - (void)clearStack{
     if (self.programStack) [self.programStack removeAllObjects];

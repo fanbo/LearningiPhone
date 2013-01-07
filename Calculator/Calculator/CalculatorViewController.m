@@ -14,8 +14,7 @@
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
 @property (nonatomic,strong) CalculatorBrain *caclBrain;
 @property (weak, nonatomic) IBOutlet UILabel *historyLabel;
-@property (nonatomic,strong) NSDictionary *testVariableValues;
-@property (weak, nonatomic) IBOutlet UILabel *variableLabel;
+@property (nonatomic,strong)NSDictionary *testVariableValues;
 @end
 
 @implementation CalculatorViewController
@@ -29,24 +28,6 @@
     self.resultLabel.text=@"0";
     [self.caclBrain clearStack];
 }
-- (IBAction)variablePress:(UIButton *)sender {
-    NSString * variable = sender.currentTitle;
-    if (!self.userIsInTheMiddleOfEnteringANumber){
-        self.resultLabel.text = variable;
-        self.userIsInTheMiddleOfEnteringANumber = NO;
-        [self.caclBrain pushVirable:variable];
-        [self addHistoryLabel:variable isOperationPress:NO];
-    }
-}
-- (IBAction)testVariablePress:(UIButton *)sender {
-    if ([sender.currentTitle isEqualToString:@"test1"]){
-        self.testVariableValues=[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:3],@"a",[NSNumber numberWithDouble:4],@"b",nil];
-    } else if([sender.currentTitle isEqualToString:@"test2"]){
-        self.testVariableValues=[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:3],@"a",[NSNumber numberWithDouble:-4],@"x",nil];
-    } else if([sender.currentTitle isEqualToString:@"test3"]){
-       self.testVariableValues=[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:4],@"b",[NSNumber numberWithDouble:-4],@"x", nil]; 
-    }
-}
 
 - (IBAction)digiPressed:(UIButton *)sender {
     NSString *digi = sender.currentTitle;
@@ -59,16 +40,9 @@
 }
 - (IBAction)operationPressed:(UIButton *)sender {
     if (self.userIsInTheMiddleOfEnteringANumber) [self enterPress];
-    [self.caclBrain preformOperation:sender.currentTitle];
-    double result = [CalculatorBrain runProgram:self.caclBrain.program usingVariableValues:self.testVariableValues];
+    double result=[self.caclBrain preformOperation:sender.currentTitle];
     self.resultLabel.text=[NSString stringWithFormat:@"%g",result];
     [self addHistoryLabel:sender.currentTitle isOperationPress:YES];
-    NSSet *valiableSet;
-    self.variableLabel.text = @"";
-    valiableSet=[CalculatorBrain variablesUsedInProgram:self.caclBrain.program];
-    for(NSString *valiable in valiableSet){
-        self.variableLabel.text = [[self.variableLabel.text stringByAppendingString:valiable] stringByAppendingString:@" = "];
-    }
 }
 - (IBAction)enterPress {
     [self.caclBrain pushOperand:[self.resultLabel.text doubleValue]];
@@ -104,8 +78,7 @@
     if (self.userIsInTheMiddleOfEnteringANumber) {
         self.resultLabel.text = [NSString stringWithFormat:@"%g",0 - [self.resultLabel.text doubleValue]];
     } else{
-        [self.caclBrain preformOperation:@"+/-"];
-        double result = [CalculatorBrain runProgram:self.caclBrain.program usingVariableValues:self.testVariableValues];
+        double result=[self.caclBrain preformOperation:@"+/-"];
         self.resultLabel.text=[NSString stringWithFormat:@"%g",result];
         [self addHistoryLabel:@"+/-" isOperationPress:YES];
     }
@@ -119,5 +92,25 @@
             self.resultLabel.text = [self.resultLabel.text substringToIndex:self.resultLabel.text.length - 1];
         }
     }
+}
+- (IBAction)variablePress:(UIButton *)sender {
+    NSString * variable = sender.currentTitle;
+    if (!self.userIsInTheMiddleOfEnteringANumber){
+        self.resultLabel.text = variable;
+        self.userIsInTheMiddleOfEnteringANumber = NO;
+        [self.caclBrain pushVariable:variable];
+        [self addHistoryLabel:variable isOperationPress:NO];
+    }
+}
+
+- (IBAction)testVariablePress:(UIButton *)sender {
+    if ([sender.currentTitle isEqualToString:@"test1"]){
+        self.testVariableValues = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:3],@"a",[NSNumber numberWithDouble:4],@"b",nil];
+    } else if([sender.currentTitle isEqualToString:@"test2"]){
+        self.testVariableValues = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:3],@"a",[NSNumber numberWithDouble:-4],@"x",nil];
+    } else if([sender.currentTitle isEqualToString:@"test3"]){
+        self.testVariableValues = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:4],@"b",[NSNumber numberWithDouble:-4],@"x", nil];
+    }
+    [self.caclBrain pushVariableValues:self.testVariableValues];
 }
 @end
