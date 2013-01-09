@@ -15,6 +15,7 @@
 @property (nonatomic,strong) CalculatorBrain *caclBrain;
 @property (weak, nonatomic) IBOutlet UILabel *historyLabel;
 @property (nonatomic,strong)NSDictionary *testVariableValues;
+@property (weak, nonatomic) IBOutlet UILabel *variableValuesList;
 @end
 
 @implementation CalculatorViewController
@@ -26,13 +27,15 @@
     self.userIsInTheMiddleOfEnteringANumber = NO;
     self.historyLabel.text=@"";
     self.resultLabel.text=@"0";
+    self.variableValuesList.text=@"";
+    self.testVariableValues = nil;
     [self.caclBrain clearStack];
 }
 
 - (IBAction)digiPressed:(UIButton *)sender {
     NSString *digi = sender.currentTitle;
     if (self.userIsInTheMiddleOfEnteringANumber){
-        self.resultLabel.text=[self.resultLabel.text stringByAppendingString:digi];
+        self.resultLabel.text = [self.resultLabel.text stringByAppendingString:digi];
     } else{
         self.resultLabel.text = digi;
         self.userIsInTheMiddleOfEnteringANumber = YES;
@@ -40,14 +43,27 @@
 }
 - (IBAction)operationPressed:(UIButton *)sender {
     if (self.userIsInTheMiddleOfEnteringANumber) [self enterPress];
-    double result=[self.caclBrain preformOperation:sender.currentTitle];
-    self.resultLabel.text=[NSString stringWithFormat:@"%g",result];
-    [self addHistoryLabel:sender.currentTitle isOperationPress:YES];
+    id result=[self.caclBrain preformOperation:sender.currentTitle];
+    self.resultLabel.text=[NSString stringWithFormat:@"%@",result];
+    //显示变量和变量的值
+    NSSet *variableValuesName;
+    self.variableValuesList.text = @"";
+    variableValuesName = [CalculatorBrain variablesUsedInProgram:self.caclBrain.program];
+    NSNumber *value;
+    if (variableValuesName){
+        for (NSString *keyname in variableValuesName){
+            value = [self.testVariableValues objectForKey:keyname];
+            if (!value) value = [NSNumber numberWithDouble:0];
+                self.variableValuesList.text =
+                [self.variableValuesList.text stringByAppendingString:[NSString stringWithFormat:@"%@ = %@ ",keyname,value]];
+        }
+    }
+    self.historyLabel.text = [CalculatorBrain descriptionOfProgram:self.caclBrain.program];
 }
 - (IBAction)enterPress {
     [self.caclBrain pushOperand:[self.resultLabel.text doubleValue]];
     self.userIsInTheMiddleOfEnteringANumber = NO;
-    [self addHistoryLabel:self.resultLabel.text isOperationPress:NO];
+    self.historyLabel.text = [CalculatorBrain descriptionOfProgram:self.caclBrain.program];
 }
 
 - (IBAction)pointPress:(UIButton *)sender {
@@ -61,27 +77,17 @@
         }
     }
 }
-- (void)addHistoryLabel:(NSString *)histroy isOperationPress:(BOOL)isOperationPress{
-    self.historyLabel.text=[self.historyLabel.text stringByAppendingString:[histroy stringByAppendingString:@"  "]];
-    NSRange range =[self.historyLabel.text rangeOfString:@"="];
-    if (range.location == NSNotFound){
-        if (isOperationPress) self.historyLabel.text=[self.historyLabel.text stringByAppendingString:@"="];
-    } else{
-        if (!isOperationPress){
-            self.historyLabel.text=[self.historyLabel.text stringByReplacingCharactersInRange:range withString:@""];
-        }else{
-            self.historyLabel.text=[[self.historyLabel.text stringByReplacingCharactersInRange:range withString:@""] stringByAppendingString:@"="];
+- (IBAction)signPress {
+    if (![self.resultLabel.text isEqualToString:@"0"]){
+        if (self.userIsInTheMiddleOfEnteringANumber) {
+            self.resultLabel.text = [NSString stringWithFormat:@"%g",0 - [self.resultLabel.text doubleValue]];
+        } else{
+            id result=[self.caclBrain preformOperation:@"+/-"];
+            self.resultLabel.text=[NSString stringWithFormat:@"%@",result];
+            self.historyLabel.text = [CalculatorBrain descriptionOfProgram:self.caclBrain.program];
         }
     }
-}
-- (IBAction)signPress {
-    if (self.userIsInTheMiddleOfEnteringANumber) {
-        self.resultLabel.text = [NSString stringWithFormat:@"%g",0 - [self.resultLabel.text doubleValue]];
-    } else{
-        double result=[self.caclBrain preformOperation:@"+/-"];
-        self.resultLabel.text=[NSString stringWithFormat:@"%g",result];
-        [self addHistoryLabel:@"+/-" isOperationPress:YES];
-    }
+
 }
 - (IBAction)backPress {
     if (self.userIsInTheMiddleOfEnteringANumber){
@@ -91,6 +97,9 @@
         } else{
             self.resultLabel.text = [self.resultLabel.text substringToIndex:self.resultLabel.text.length - 1];
         }
+    } else{
+        [self.caclBrain removeLastObject];
+        
     }
 }
 - (IBAction)variablePress:(UIButton *)sender {
@@ -99,7 +108,7 @@
         self.resultLabel.text = variable;
         self.userIsInTheMiddleOfEnteringANumber = NO;
         [self.caclBrain pushVariable:variable];
-        [self addHistoryLabel:variable isOperationPress:NO];
+        self.historyLabel.text = [CalculatorBrain descriptionOfProgram:self.caclBrain.program];
     }
 }
 
@@ -109,7 +118,7 @@
     } else if([sender.currentTitle isEqualToString:@"test2"]){
         self.testVariableValues = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:3],@"a",[NSNumber numberWithDouble:-4],@"x",nil];
     } else if([sender.currentTitle isEqualToString:@"test3"]){
-        self.testVariableValues = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:4],@"b",[NSNumber numberWithDouble:-4],@"x", nil];
+        self.testVariableValues = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:-4],@"x", nil];
     }
     [self.caclBrain pushVariableValues:self.testVariableValues];
 }
